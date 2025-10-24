@@ -1,10 +1,7 @@
 from transformers import AutoTokenizer, AutoModelForCausalLM
 import torch
-import dotenv
-import os
 
-dotenv.load_dotenv()
-HF_TOKEN = os.getenv("HF_TOKEN")
+HF_TOKEN="<hf_token_here>"
 
 model_name = "microsoft/Phi-3-mini-4k-instruct"
 
@@ -15,7 +12,7 @@ model = AutoModelForCausalLM.from_pretrained(
     model_name,
     use_auth_token=HF_TOKEN,
     torch_dtype=torch.float16,
-    device_map="cuda"
+    device_map="auto"
 )
 
 prompt = "Explain recursion in simple terms."
